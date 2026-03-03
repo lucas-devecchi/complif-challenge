@@ -1,4 +1,5 @@
 import { Request } from "express";
+import { AccountId } from "../../modules/accounts/core/domain/Account";
 import { BusinessId } from "../../modules/businesses/core/domain/Business";
 import { BadRequest } from "../../modules/shared/domain/errors/BadRequest";
 import { Pagination } from "../../modules/shared/domain/Pagination";
@@ -6,6 +7,7 @@ import { Pagination } from "../../modules/shared/domain/Pagination";
 
 export enum PathParams {
     BUSINESS_ID = 'businessId',
+    ACCOUNT_ID = 'accountId',
 }
 
 const getOptionalPathParam = (req: Request, param: PathParams): string | undefined => {
@@ -31,6 +33,10 @@ const getPathParam = (req: Request, param: PathParams): string => {
 
 export const getBusinessId = (req: Request): BusinessId => {
     return getPathParam(req, PathParams.BUSINESS_ID);
+};
+
+export const getAccountId = (req: Request): AccountId => {
+    return getPathParam(req, PathParams.ACCOUNT_ID);
 };
 
 export const getPage = (req: Request): number | undefined => {
