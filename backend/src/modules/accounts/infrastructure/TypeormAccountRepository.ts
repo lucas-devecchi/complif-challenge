@@ -13,6 +13,7 @@ export class TypeormAccountRepository implements AccountRepository {
     }
 
     private relations: FindOneOptions<TypeormAccount>['relations'] = {
+        business: true,
     };
 
     async save(account: Account): Promise<Account> {
@@ -74,6 +75,7 @@ export class TypeormAccountRepository implements AccountRepository {
         return new Account({
             id: entity.id,
             accountNumber: entity.accountNumber,
+            business: { id: entity.business.id },
         });
     }
 }
