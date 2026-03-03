@@ -1,8 +1,7 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
+import Middleware from "../middlewares/middleware";
 
 type Controller = (req: Request, res: Response) => Promise<void>;
-
-type Middleware = (req: Request, res: Response, next: NextFunction) => (Promise<void> | void);
 
 export const defaultController: (controller: Controller) => Middleware = (controller: Controller) => {
     return async (req, res, next) => {
@@ -11,5 +10,7 @@ export const defaultController: (controller: Controller) => Middleware = (contro
         } catch (error: any) {
             next(error);
         }
-    };
-};
+    }
+}
+
+export default Controller;
