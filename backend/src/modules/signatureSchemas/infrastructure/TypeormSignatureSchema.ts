@@ -11,29 +11,29 @@ export class TypeormSignatureSchema {
     @Column({ type: 'int' })
     version: number;
 
-    @Column()
+    @Column({ type: 'uuid' })
     accountId: AccountId;
-    
+
     @OneToOne(() => TypeormAccount, (account) => account.signatureSchema)
     account: TypeormAccount;
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
     createdAt: Date;
 
+    toDomain(): SignatureSchema {
+        return new SignatureSchema({
+            id: this.id,
+            version: this.version,
+            account: !!this.account ? this.account.toDomain() : { id: this.accountId },
+        });
+    }
+
     static fromDomain(signatureSchema: SignatureSchema): TypeormSignatureSchema {
         const entity = new TypeormSignatureSchema();
         entity.id = signatureSchema.id;
         entity.version = signatureSchema.version;
         entity.accountId = signatureSchema.account.id;
-        entity.account = { id: signatureSchema.account.id } as TypeormAccount;
         return entity;
     }
 
-    toDomain(): SignatureSchema {
-        return new SignatureSchema({
-            id: this.id,
-            version: this.version,
-            account: { id: this.account.id },
-        });
-    }
 }

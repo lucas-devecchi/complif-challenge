@@ -25,16 +25,6 @@ export class TypeormBusiness {
     @OneToMany(() => TypeormAccount, (account) => account.business)
     accounts?: TypeormAccount[];
 
-    static fromDomain(business: Business): TypeormBusiness {
-        const entity = new TypeormBusiness();
-        entity.id = business.id;
-        entity.name = business.name;
-        entity.taxId = business.taxId;
-        entity.country = business.country;
-        entity.industry = business.industry;
-        return entity;
-    }
-
     toDomain(): Business {
         return new Business({
             id: this.id,
@@ -43,5 +33,15 @@ export class TypeormBusiness {
             country: this.country,
             industry: this.industry,
         });
+    }
+
+    static fromDomain(business: Business): TypeormBusiness {
+        const entity = new TypeormBusiness();
+        entity.id = business.id;
+        entity.name = business.name;
+        entity.taxId = business.taxId;
+        entity.country = business.country;
+        entity.industry = business.industry;
+        return entity;
     }
 }
