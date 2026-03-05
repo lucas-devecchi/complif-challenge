@@ -1,7 +1,6 @@
 import { TypeormConnectionManager } from '../../../../config/TypeormConnectionManager';
 import { EntriesResult } from '../../../shared/domain/EntriesResult';
 import { Pagination } from '../../../shared/domain/Pagination';
-import { PaginatedResult } from '../../../shared/utils/pagination';
 import { TypeormAccountRepository } from '../../infrastructure/TypeormAccountRepository';
 import { Account, AccountId } from './Account';
 
@@ -11,7 +10,7 @@ export type GetAllParams = {
 
 export interface AccountRepository {
     save(account: Account): Promise<Account>;
-    getById(id: AccountId): Promise<Account | null>;
+    getById(id: AccountId): Promise<Account | undefined>;
     getAll(params: GetAllParams): Promise<EntriesResult<Account>>;
     delete(id: AccountId): Promise<Account>;
     

@@ -17,14 +17,14 @@ export class TypeormAccountRepository implements AccountRepository {
     };
 
     async save(account: Account): Promise<Account> {
-        const accountEntity = this.toEntity(account);
+        const accountEntity = TypeormAccount.fromDomain(account);
         await this.repository.save(accountEntity);
-        return this.toDomain(accountEntity);
+        return accountEntity.toDomain();
     }
 
-    async getById(id: string): Promise<Account | null> {
+    async getById(id: string): Promise<Account | undefined> {
         const account = await this.repository.findOneBy({ id });
-        return account ? this.toDomain(account) : null;
+        return account ? account.toDomain() : undefined;
     }
 
     async getAll(params: GetAllParams): Promise<EntriesResult<Account>> {
@@ -39,7 +39,7 @@ export class TypeormAccountRepository implements AccountRepository {
         });
 
         return {
-            entries: accounts.map(account => this.toDomain(account)),
+            entries: accounts.map(account => account.toDomain()),
             pagination: {
                 total,
                 page: params.pagination.page,
@@ -60,24 +60,6 @@ export class TypeormAccountRepository implements AccountRepository {
 
         await this.repository.delete(id);
 
-        return this.toDomain(account);
-    }
-
-    private toEntity(account: Account): TypeormAccount {
-        const entity = new TypeormAccount();
-        entity.id = account.id;
-        entity.accountNumber = account.accountNumber;
-        entity.business = { id: account.business.id };
-        entity.signatureSchema = { id: account.signatureSchema.id };
-                return entity;
-    }
-
-    private toDomain(entity: TypeormAccount): Account {
-        return new Account({
-            id: entity.id,
-            accountNumber: entity.accountNumber,
-            business: { id: entity.business.id },
-            signatureSchema: { id: entity.signatureSchema.id },
-        });
+        return account.toDomain();
     }
 }

@@ -17,14 +17,14 @@ export class TypeormSignatureSchemaRepository implements SignatureSchemaReposito
     };
 
     async save(signatureSchema: SignatureSchema): Promise<SignatureSchema> {
-        const signatureSchemaEntity = this.toEntity(signatureSchema);
+        const signatureSchemaEntity = TypeormSignatureSchema.fromDomain(signatureSchema);
         await this.repository.save(signatureSchemaEntity);
-        return this.toDomain(signatureSchemaEntity);
+        return signatureSchemaEntity.toDomain();
     }
 
-    async getById(id: string): Promise<SignatureSchema | null> {
+    async getById(id: string): Promise<SignatureSchema | undefined> {
         const signatureSchema = await this.repository.findOneBy({ id });
-        return signatureSchema ? this.toDomain(signatureSchema) : null;
+        return signatureSchema ? signatureSchema.toDomain() : undefined;
     }
 
     async getAll(params: GetAllParams): Promise<EntriesResult<SignatureSchema>> {
@@ -39,7 +39,7 @@ export class TypeormSignatureSchemaRepository implements SignatureSchemaReposito
         });
 
         return {
-            entries: signatureSchemas.map(signatureSchema => this.toDomain(signatureSchema)),
+            entries: signatureSchemas.map(signatureSchema => signatureSchema.toDomain()),
             pagination: {
                 total,
                 page: params.pagination.page,
@@ -60,23 +60,7 @@ export class TypeormSignatureSchemaRepository implements SignatureSchemaReposito
 
         await this.repository.delete(id);
 
-        return this.toDomain(signatureSchema);
-    }
-
-    private toEntity(signatureSchema: SignatureSchema): TypeormSignatureSchema {
-        const entity = new TypeormSignatureSchema();
-        entity.id = signatureSchema.id;
-        entity.version = signatureSchema.version;
-        entity.accountId = signatureSchema.account.id;
-        return entity;
-    }
-
-    private toDomain(entity: TypeormSignatureSchema): SignatureSchema {
-        return new SignatureSchema({
-            id: entity.id,
-            version: entity.version,
-            account: { id: entity.account.id },
-        });
+        return signatureSchema.toDomain();
     }
 }
 

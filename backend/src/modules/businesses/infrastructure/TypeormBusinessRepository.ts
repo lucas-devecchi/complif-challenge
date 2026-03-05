@@ -16,14 +16,14 @@ export class TypeormBusinessRepository implements BusinessRepository {
     };
 
     async save(business: Business): Promise<Business> {
-        const businessEntity = this.toEntity(business);
+        const businessEntity = TypeormBusiness.fromDomain(business);
         await this.repository.save(businessEntity);
-        return this.toDomain(businessEntity);
+        return businessEntity.toDomain();
     }
 
-    async getById(id: string): Promise<Business | null> {
+    async getById(id: string): Promise<Business | undefined> {
         const business = await this.repository.findOneBy({ id });
-        return business ? this.toDomain(business) : null;
+        return business ? business.toDomain() : undefined;
     }
 
     async getAll(params: GetAllParams): Promise<EntriesResult<Business>> {
@@ -38,7 +38,7 @@ export class TypeormBusinessRepository implements BusinessRepository {
         });
 
         return {
-            entries: businesses.map(business => this.toDomain(business)),
+            entries: businesses.map(business => business.toDomain()),
             pagination: {
                 total,
                 page: params.pagination.page,
@@ -59,27 +59,6 @@ export class TypeormBusinessRepository implements BusinessRepository {
 
         await this.repository.delete(id);
 
-        return this.toDomain(business);
-    }
-
-    private toEntity(business: Business): TypeormBusiness {
-        const entity = new TypeormBusiness();
-        entity.id = business.id;
-        entity.name = business.name;
-        entity.taxId = business.taxId;
-        entity.country = business.country;
-        entity.industry = business.industry;
-
-        return entity;
-    }
-
-    private toDomain(entity: TypeormBusiness): Business {
-        return new Business({
-            id: entity.id,
-            name: entity.name,
-            taxId: entity.taxId,
-            country: entity.country,
-            industry: entity.industry,
-        });
+        return business.toDomain();
     }
 }

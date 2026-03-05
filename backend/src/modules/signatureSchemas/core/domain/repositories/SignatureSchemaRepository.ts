@@ -10,7 +10,7 @@ export type GetAllParams = {
 
 export interface SignatureSchemaRepository {
     save(signatureSchema: SignatureSchema): Promise<SignatureSchema>;
-    getById(id: SignatureSchemaId): Promise<SignatureSchema | null>;
+    getById(id: SignatureSchemaId): Promise<SignatureSchema | undefined>;
     getAll(params: GetAllParams): Promise<EntriesResult<SignatureSchema>>;
     delete(id: SignatureSchemaId): Promise<SignatureSchema>;
     

@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
-import { BusinessId } from '../core/domain/Business';
+import { Business, BusinessId } from '../core/domain/Business';
 import { TypeormAccount } from '../../accounts/infrastructure/TypeormAccount';
 
 @Entity('businesses')
@@ -24,4 +24,24 @@ export class TypeormBusiness {
 
     @OneToMany(() => TypeormAccount, (account) => account.business)
     accounts?: TypeormAccount[];
+
+    static fromDomain(business: Business): TypeormBusiness {
+        const entity = new TypeormBusiness();
+        entity.id = business.id;
+        entity.name = business.name;
+        entity.taxId = business.taxId;
+        entity.country = business.country;
+        entity.industry = business.industry;
+        return entity;
+    }
+
+    toDomain(): Business {
+        return new Business({
+            id: this.id,
+            name: this.name,
+            taxId: this.taxId,
+            country: this.country,
+            industry: this.industry,
+        });
+    }
 }

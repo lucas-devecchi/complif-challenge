@@ -1,5 +1,5 @@
 import { Entity, Column, JoinColumn, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, OneToOne } from 'typeorm';
-import { AccountId } from '../core/domain/Account';
+import { Account, AccountId } from '../core/domain/Account';
 import { TypeormBusiness } from '../../businesses/infrastructure/TypeormBusiness';
 import { TypeormSignatureSchema } from '../../signatureSchemas/infrastructure/TypeormSignatureSchema';
 
@@ -21,4 +21,22 @@ export class TypeormAccount {
     @ManyToOne(() => TypeormBusiness, (business) => business.accounts)
     @JoinColumn({ name: 'business_id' })
     business: TypeormBusiness;
+
+    static fromDomain(account: Account): TypeormAccount {
+        const entity = new TypeormAccount();
+        entity.id = account.id;
+        entity.accountNumber = account.accountNumber;
+        entity.business = { id: account.business.id } as TypeormBusiness;
+        entity.signatureSchema = { id: account.signatureSchema.id } as TypeormSignatureSchema;
+        return entity;
+    }
+
+    toDomain(): Account {
+        return new Account({
+            id: this.id,
+            accountNumber: this.accountNumber,
+            business: { id: this.business.id },
+            signatureSchema: { id: this.signatureSchema.id },
+        });
+    }
 }
