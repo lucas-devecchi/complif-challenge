@@ -13,6 +13,7 @@ export class TypeormSignatureSchemaRepository implements SignatureSchemaReposito
     }
 
     private relations: FindOneOptions<TypeormSignatureSchema>['relations'] = {
+        account: true,
     };
 
     async save(signatureSchema: SignatureSchema): Promise<SignatureSchema> {
@@ -34,7 +35,7 @@ export class TypeormSignatureSchemaRepository implements SignatureSchemaReposito
             relations: this.relations,
             skip: params.pagination.skip(),
             take: params.pagination.take(),
-            order: { signatureSchemaNumber: 'ASC' },
+            order: { createdAt: 'ASC' },
         });
 
         return {
@@ -66,7 +67,7 @@ export class TypeormSignatureSchemaRepository implements SignatureSchemaReposito
         const entity = new TypeormSignatureSchema();
         entity.id = signatureSchema.id;
         entity.version = signatureSchema.version;
-        entity.account = this.toEntity(signatureSchema.account);
+        entity.accountId = signatureSchema.account.id;
         return entity;
     }
 

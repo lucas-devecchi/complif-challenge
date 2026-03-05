@@ -67,9 +67,9 @@ export class TypeormAccountRepository implements AccountRepository {
         const entity = new TypeormAccount();
         entity.id = account.id;
         entity.accountNumber = account.accountNumber;
-        entity.business = this.toEntity(account.business);
-        entity.signatureSchema = this.toEntity(account.signatureSchema);
-        return entity;
+        entity.business = { id: account.business.id };
+        entity.signatureSchema = { id: account.signatureSchema.id };
+                return entity;
     }
 
     private toDomain(entity: TypeormAccount): Account {
