@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
 import { BusinessId } from '../core/domain/Business';
+import { TypeormAccount } from '../../accounts/infrastructure/TypeormAccount';
 
 @Entity('businesses')
 export class TypeormBusiness {
@@ -20,4 +21,7 @@ export class TypeormBusiness {
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
     createdAt: Date;
+
+    @OneToMany(() => TypeormAccount, (account) => account.business)
+    accounts?: TypeormAccount[];
 }

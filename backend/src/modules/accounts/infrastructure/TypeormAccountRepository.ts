@@ -30,7 +30,7 @@ export class TypeormAccountRepository implements AccountRepository {
     async getAll(params: GetAllParams): Promise<EntriesResult<Account>> {
         let where: FindOptionsWhere<TypeormAccount>[] = [];
 
-        const [accountes, total] = await this.repository.findAndCount({
+        const [accounts, total] = await this.repository.findAndCount({
             where: where.length > 0 ? where : {},
             relations: this.relations,
             skip: params.pagination.skip(),
@@ -39,7 +39,7 @@ export class TypeormAccountRepository implements AccountRepository {
         });
 
         return {
-            entries: accountes.map(account => this.toDomain(account)),
+            entries: accounts.map(account => this.toDomain(account)),
             pagination: {
                 total,
                 page: params.pagination.page,
@@ -67,7 +67,8 @@ export class TypeormAccountRepository implements AccountRepository {
         const entity = new TypeormAccount();
         entity.id = account.id;
         entity.accountNumber = account.accountNumber;
-
+        entity.business = this.toEntity(account.business);
+        entity.signatureSchema = this.toEntity(account.signatureSchema);
         return entity;
     }
 
@@ -76,6 +77,7 @@ export class TypeormAccountRepository implements AccountRepository {
             id: entity.id,
             accountNumber: entity.accountNumber,
             business: { id: entity.business.id },
+            signatureSchema: { id: entity.signatureSchema.id },
         });
     }
 }
