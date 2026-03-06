@@ -16,6 +16,10 @@ export type HandledErrorParams = {
 export enum Resource {
   BUSINESS = 'BUSINESS',
   ACCOUNT = 'ACCOUNT',
+  GROUP = 'GROUP',
+  SIGNATURE_RULE = 'SIGNATURE_RULE',
+  RULE_OPTION = 'RULE_OPTION',
+  RULE_REQUIREMENT = 'RULE_REQUIREMENT',
 }
 
 export class HandledError extends Error {

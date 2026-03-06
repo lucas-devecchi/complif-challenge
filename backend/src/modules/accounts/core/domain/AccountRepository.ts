@@ -1,7 +1,7 @@
 import { TypeormConnectionManager } from '../../../../config/TypeormConnectionManager';
 import { EntriesResult } from '../../../shared/domain/EntriesResult';
 import { Pagination } from '../../../shared/domain/Pagination';
-import { TypeormAccountRepository } from '../../infrastructure/TypeormAccountRepository';
+import { TypeormAccountRepository } from '../../infrastructure/repositories/TypeormAccountRepository';
 import { Account, AccountId } from './Account';
 
 export type GetAllParams = {
