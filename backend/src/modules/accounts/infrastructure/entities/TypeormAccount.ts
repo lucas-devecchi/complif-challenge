@@ -23,7 +23,6 @@ export class TypeormAccount {
     signatureSchema: TypeormSignatureSchema;
 
     @ManyToOne(() => TypeormBusiness, (business) => business.accounts)
-    @JoinColumn({ name: 'business_id' })
     business: TypeormBusiness;
 
     @OneToMany(() => TypeormGroup, (group) => group.account)
