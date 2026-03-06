@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne } from 'typeorm';
 import { SignatureSchema, SignatureSchemaId } from '../core/domain/entities/SignatureSchema';
-import { TypeormAccount } from '../../accounts/infrastructure/TypeormAccount';
+import { TypeormAccount } from '../../accounts/infrastructure/entities/TypeormAccount';
 import { AccountId } from '../../accounts/core/domain/Account';
 
 @Entity('signatureSchemas')

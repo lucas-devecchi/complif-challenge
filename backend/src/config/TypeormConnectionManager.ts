@@ -1,5 +1,9 @@
 import { DataSource } from 'typeorm';
 import 'reflect-metadata';
+import { TypeormBusiness } from '../modules/businesses/infrastructure/TypeormBusiness';
+import { TypeormAccount } from '../modules/accounts/infrastructure/entities/TypeormAccount';
+import { TypeormGroup } from '../modules/accounts/infrastructure/entities/TypeormGroup';
+import { TypeormSignatureSchema } from '../modules/signatureSchemas/infrastructure/TypeormSignatureSchema';
 
 export class TypeormConnectionManager {
     private static dataSource: DataSource;
@@ -40,7 +44,12 @@ export class TypeormConnectionManager {
                 query_timeout: 30000,
             },
             entities: [
-
+                TypeormBusiness,
+                TypeormAccount,
+                TypeormGroup,
+                TypeormSignatureSchema,
+                // TypeormSignatureRule,
+                // TypeormRuleOption,
             ],
             synchronize: true,
             ssl: DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
