@@ -19,9 +19,9 @@ class UpdateBusinessStatus {
 
         const updatedBusiness = business.copy({ status });
 
-        if (status === BusinessStatus.APPROVED) {
+        if (status === BusinessStatus.APPROVED)
             await this.accountService.create({ business: { id: business.id } });
-        }
+
         return this.businessService.update(updatedBusiness);
     }
 }
