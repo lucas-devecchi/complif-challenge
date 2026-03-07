@@ -1,9 +1,9 @@
 import { DataSource, FindOneOptions, FindOptionsWhere, Repository } from "typeorm";
-import { AccountRepository, GetAllParams } from "../../core/domain/AccountRepository";
-import { Account, AccountId } from "../../core/domain/Account";
-import { AccountNotFound } from "../../core/domain/errors/AccountNotFound";
-import { EntriesResult } from "../../../shared/domain/EntriesResult";
-import { TypeormAccount } from "../entities/TypeormAccount";
+import { AccountRepository, GetAllParams } from "../core/domain/AccountRepository";
+import { Account, AccountId } from "../core/domain/Account";
+import { AccountNotFound } from "../core/domain/errors/AccountNotFound";
+import { EntriesResult } from "../../shared/domain/EntriesResult";
+import { TypeormAccount } from "./TypeormAccount";
 
 export class TypeormAccountRepository implements AccountRepository {
     private repository: Repository<TypeormAccount>;

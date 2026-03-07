@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
-import { Business, BusinessId } from '../../core/domain/entities/Business';
-import { TypeormAccount } from '../../../accounts/infrastructure/entities/TypeormAccount';
+import { Business, BusinessId, BusinessStatus } from '../../core/domain/entities/Business';
+import { TypeormAccount } from '../../../accounts/infrastructure/TypeormAccount';
 import { TypeormGroup } from './TypeormGroup';
 
 @Entity('businesses')
@@ -20,6 +20,9 @@ export class TypeormBusiness {
     @Column({ type: 'varchar' })
     industry: string;
 
+    @Column({ type: 'enum', enum: BusinessStatus })
+    status: BusinessStatus;
+
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
     createdAt: Date;
 
@@ -36,6 +39,7 @@ export class TypeormBusiness {
             taxId: this.taxId,
             country: this.country,
             industry: this.industry,
+            status: this.status,
         });
     }
 
@@ -46,6 +50,7 @@ export class TypeormBusiness {
         entity.taxId = business.taxId;
         entity.country = business.country;
         entity.industry = business.industry;
+        entity.status = business.status;
         return entity;
     }
 }

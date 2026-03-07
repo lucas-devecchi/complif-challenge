@@ -27,10 +27,12 @@ export class TypeormBusinessRepository implements BusinessRepository {
     }
 
     async getAll(params: GetAllParams): Promise<EntriesResult<Business>> {
-        let where: FindOptionsWhere<TypeormBusiness>[] = [];
+        const where: FindOptionsWhere<TypeormBusiness> = params.status
+            ? { status: params.status }
+            : {};
 
         const [businesses, total] = await this.repository.findAndCount({
-            where: where.length > 0 ? where : {},
+            where,
             relations: this.relations,
             skip: params.pagination.skip(),
             take: params.pagination.take(),

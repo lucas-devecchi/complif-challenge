@@ -2,10 +2,11 @@ import { TypeormConnectionManager } from '../../../../../config/TypeormConnectio
 import { EntriesResult } from '../../../../shared/domain/EntriesResult';
 import { Pagination } from '../../../../shared/domain/Pagination';
 import { TypeormBusinessRepository } from '../../../infrastructure/repositories/TypeormBusinessRepository';
-import { Business, BusinessId } from '../entities/Business';
+import { Business, BusinessId, BusinessStatus } from '../entities/Business';
 
 export type GetAllParams = {
     pagination: Pagination;
+    status?: BusinessStatus;
 };
 
 export interface BusinessRepository {

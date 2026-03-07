@@ -27,6 +27,7 @@ export const createBusinessController: Controller = async (req, res) => {
         industry,
     } = req.body;
 
+
     const business = await createBusiness.invoke({
         name,
         taxId,
@@ -42,13 +43,16 @@ export const updateBusinessController: Controller = async (req, res) => {
         taxId,
         country,
         industry,
+        status
     } = req.body;
+
 
     const business = await updateBusiness.invoke(getBusinessId(req), {
         name,
         taxId,
         country,
         industry,
+        status,
     });
 
     res.status(200).json(business);
