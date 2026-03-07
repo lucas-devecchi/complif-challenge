@@ -23,6 +23,9 @@ export class TypeormBusiness {
     @Column({ type: 'enum', enum: BusinessStatus })
     status: BusinessStatus;
 
+    @Column({ name: 'risk_score', type: 'int' })
+    riskScore: number;
+
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
     createdAt: Date;
 
@@ -40,6 +43,7 @@ export class TypeormBusiness {
             country: this.country,
             industry: this.industry,
             status: this.status,
+            riskScore: this.riskScore,
         });
     }
 
@@ -51,6 +55,7 @@ export class TypeormBusiness {
         entity.country = business.country;
         entity.industry = business.industry;
         entity.status = business.status;
+        entity.riskScore = business.riskScore;
         return entity;
     }
 }
