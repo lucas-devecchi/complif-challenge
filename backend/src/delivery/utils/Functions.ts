@@ -8,6 +8,10 @@ import { AccountId } from "../../modules/accounts/core/domain/Account";
 export enum PathParams {
     BUSINESS_ID = 'businessId',
     ACCOUNT_ID = 'accountId',
+    // GROUP = 'GROUP',
+    // SIGNATURE_RULE = 'SIGNATURE_RULE',
+    // RULE_OPTION = 'RULE_OPTION',
+    // RULE_REQUIREMENT = 'RULE_REQUIREMENT',
 }
 
 const getOptionalPathParam = (req: Request, param: PathParams): string | undefined => {

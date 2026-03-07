@@ -1,6 +1,6 @@
 import { businessService, BusinessService } from '../domain/services/BusinessService';
-import { NewProps, Business } from '../domain/entities/Business';
-import { CreateBusinessDto } from '../../../../delivery/dtos/business';
+import { Business } from '../domain/entities/Business';
+import { CreateBusinessDto } from '../../../../delivery/dtos/businessDTO';
 
 class CreateBusiness {
   constructor(private businessService: BusinessService) { }

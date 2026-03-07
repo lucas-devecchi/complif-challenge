@@ -5,7 +5,6 @@ import { GroupProps } from '../../../../businesses/core/domain/entities/Group';
 
 export type RuleRequirementId = string;
 
-
 export type RuleRequirementProps = {
     id: RuleRequirementId;
     option: OptionalExceptFor<RuleOptionProps, 'id'>;
