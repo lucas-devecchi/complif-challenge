@@ -2,6 +2,7 @@ import express, { Application, NextFunction, Request, Response } from 'express';
 import http from 'http';
 import cors from 'cors';
 import { setupRoutes } from './routes';
+import { GetErrorMessage, GetErrorStatusCode } from './utils/Error';
 
 const { PORT = 3000 } = process.env;
 
@@ -34,11 +35,12 @@ export class Server {
     }
 
     private setupErrorHandler(): void {
-        this.app.use((error: Error, _req: Request, res: Response, _next: NextFunction) => {
-            console.error(error); // TODO: Add logger
-            res.status(500).json({ error: error.message });
+        this.app.use((error: Error, _: Request, res: Response, next: NextFunction) => {
+          let status = GetErrorStatusCode(error);
+        //   if (status >= 500) logger.error(error);
+          res.status(status).json(GetErrorMessage(error));
         });
-    }
+      }
 
     public start(): void {
         this.server.listen(PORT, () => {

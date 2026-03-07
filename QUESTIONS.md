@@ -8,4 +8,4 @@ resp: It depends on the architecture, but I would usually call an API and popula
 resp: If the answer is yes, I'll call it in the businessService, else I would call it inside the Business class and therefore make it less anemic. I assume that the answer is yes, so it isn't correct to create a business object if it depends on an API call inside
 
 4- A business that is Rejected can be Approved, and a business approved can be rejected?
-resp:I think that a rejected business can be approved later in the future, but can't reject an approved business.
+resp: I think that a rejected business can be approved later in the future, but can't reject an approved business.

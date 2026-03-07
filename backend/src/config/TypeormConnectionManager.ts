@@ -4,6 +4,7 @@ import { TypeormBusiness } from '../modules/businesses/infrastructure/entities/T
 import { TypeormAccount } from '../modules/accounts/infrastructure/TypeormAccount';
 import { TypeormGroup } from '../modules/businesses/infrastructure/entities/TypeormGroup';
 import { TypeormSignatureSchema } from '../modules/signatureSchemas/infrastructure/TypeormSignatureSchema';
+import { TypeormUser } from '../modules/users/infrastructure/TypeormUser';
 
 export class TypeormConnectionManager {
     private static dataSource: DataSource;
@@ -44,6 +45,7 @@ export class TypeormConnectionManager {
                 query_timeout: 30000,
             },
             entities: [
+                TypeormUser,
                 TypeormBusiness,
                 TypeormAccount,
                 TypeormGroup,

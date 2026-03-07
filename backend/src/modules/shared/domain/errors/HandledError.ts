@@ -6,6 +6,10 @@ export enum ErrorType {
   FORM_INVALID_FIELD = 'FORM_INVALID_FIELD',
   BAD_REQUEST = 'BAD_REQUEST',
   UNAUTHORIZED = 'UNAUTHORIZED', // TODO: Create when creating users.
+  USER_AND_TOKEN_MISMATCH = 'USER_AND_TOKEN_MISMATCH',
+  ACCESS_DENIED = 'ACCESS_DENIED',
+  INSUFICIENT_PERMISSIONS = 'INSUFICIENT_PERMISSIONS',
+  UNKNOWN = 'UNKNOWN',
 }
 
 export type HandledErrorParams = {
@@ -20,6 +24,7 @@ export enum Resource {
   SIGNATURE_RULE = 'SIGNATURE_RULE',
   RULE_OPTION = 'RULE_OPTION',
   RULE_REQUIREMENT = 'RULE_REQUIREMENT',
+  USER = 'USER',
 }
 
 export class HandledError extends Error {
