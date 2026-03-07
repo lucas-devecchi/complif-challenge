@@ -24,7 +24,7 @@ class Login {
         if (!isValid) throw new InvalidCredentials();
 
         const token = this.jwtService.sign({
-            userId: user.id,
+            id: user.id,
             email: user.email,
             role: user.role,
         });

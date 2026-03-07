@@ -39,7 +39,11 @@ export const createBusinessController: Controller = async (req, res) => {
 export const updateBusinessController: Controller = async (req, res) => {
     const { status } = req.body;
 
-    const business = await updateBusinessStatus.invoke(getBusinessId(req), status);
+    const business = await updateBusinessStatus.invoke({
+        businessId: getBusinessId(req),
+        status,
+        userId: req.user!.id,
+    });
 
     res.status(200).json(business);
 };

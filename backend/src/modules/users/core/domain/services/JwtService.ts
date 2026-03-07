@@ -3,7 +3,7 @@ import { UserId } from '../User';
 import { UserRole } from '../User';
 
 export type JwtPayload = {
-    userId: UserId;
+    id: UserId;
     email: string;
     role: UserRole;
 };
