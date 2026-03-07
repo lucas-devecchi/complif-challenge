@@ -1,12 +1,12 @@
 import { TypeormGroupRepository } from '../../infrastructure/repositories/TypeormGroupRepository';
 import { Group, GroupId } from './Group';
-import { AccountId } from './Account';
 import { TypeormConnectionManager } from '../../../../config/TypeormConnectionManager';
+import { BusinessId } from '../../../businesses/core/domain/Business';
 
 export interface GroupRepository {
     save(group: Group): Promise<Group>;
     getById(id: GroupId): Promise<Group | undefined>;
-    getByAccountId(accountId: AccountId): Promise<Group[]>;
+    getByBusinessId(businessId: BusinessId): Promise<Group[]>;
     delete(id: GroupId): Promise<Group>;
 }
 

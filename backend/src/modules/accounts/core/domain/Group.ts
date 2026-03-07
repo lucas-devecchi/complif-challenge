@@ -1,13 +1,13 @@
 import { randomUUID } from 'crypto';
 import { OptionalExceptFor } from '../../../shared/domain/utils';
-import { AccountProps } from './Account';
+import { BusinessProps } from '../../../businesses/core/domain/Business';
 
 export type GroupId = string;
 
 export type GroupProps = {
     id: GroupId;
     name: string;
-    account: OptionalExceptFor<AccountProps, 'id'>;
+    business: OptionalExceptFor<BusinessProps, 'id'>;
 };
 
 export type NewGroupProps = Omit<GroupProps, 'id'>;
@@ -15,11 +15,11 @@ export type NewGroupProps = Omit<GroupProps, 'id'>;
 export class Group {
     readonly id: GroupId;
     readonly name: string;
-    readonly account: OptionalExceptFor<AccountProps, 'id'>;
+    readonly business: OptionalExceptFor<BusinessProps, 'id'>;
 
     constructor(props: GroupProps) {
         this.id = props.id;
-        this.account = props.account;
+        this.business = props.business;
         this.name = props.name;
     }
 

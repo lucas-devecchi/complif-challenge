@@ -1,9 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { Group, GroupId } from '../../core/domain/Group';
-import { TypeormAccount } from './TypeormAccount';
-import { AccountId } from '../../core/domain/Account';
+import { TypeormBusiness } from '../../../businesses/infrastructure/TypeormBusiness';
+import { BusinessId } from '../../../businesses/core/domain/Business';
 
-@Entity('signer_groups')
+@Entity('groups')
 export class TypeormGroup {
     @PrimaryGeneratedColumn('uuid')
     id: GroupId;
@@ -11,18 +11,17 @@ export class TypeormGroup {
     @Column({ type: 'varchar' })
     name: string;
 
-    @Column({ name: 'account_id', type: 'uuid' })
-    accountId: AccountId;
+    @Column({ name: 'business_id', type: 'uuid' })
+    businessId: BusinessId;
 
-    @ManyToOne(() => TypeormAccount, (account) => account.groups)
-    @JoinColumn({ name: 'account_id' })
-    account: TypeormAccount;
+    @ManyToOne(() => TypeormBusiness, (business) => business.groups)
+    business: TypeormBusiness;
 
     toDomain(): Group {
         return new Group({
             id: this.id,
             name: this.name,
-            account: this.account ? { id: this.account.id } : { id: this.accountId },
+            business: this.business ? { id: this.business.id } : { id: this.businessId },
         });
     }
 
@@ -30,7 +29,7 @@ export class TypeormGroup {
         const entity = new TypeormGroup();
         entity.id = group.id;
         entity.name = group.name;
-        entity.accountId = group.account.id;
+        entity.businessId = group.business.id;
         return entity;
     }
 }

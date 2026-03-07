@@ -1,8 +1,7 @@
-import { Entity, Column, JoinColumn, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, OneToOne, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, OneToOne } from 'typeorm';
 import { Account, AccountId } from '../../core/domain/Account';
 import { TypeormBusiness } from '../../../businesses/infrastructure/TypeormBusiness';
 import { TypeormSignatureSchema } from '../../../signatureSchemas/infrastructure/TypeormSignatureSchema';
-import { TypeormGroup } from './TypeormGroup';
 import { BusinessId } from '../../../businesses/core/domain/Business';
 
 @Entity('accounts')
@@ -24,9 +23,6 @@ export class TypeormAccount {
 
     @ManyToOne(() => TypeormBusiness, (business) => business.accounts)
     business: TypeormBusiness;
-
-    @OneToMany(() => TypeormGroup, (group) => group.account)
-    groups?: TypeormGroup[];
 
     toDomain(): Account {
         return new Account({

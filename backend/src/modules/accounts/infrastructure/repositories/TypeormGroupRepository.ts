@@ -2,7 +2,7 @@ import { DataSource, Repository } from 'typeorm';
 import { GroupRepository } from '../../core/domain/GroupRepository';
 import { Group, GroupId } from '../../core/domain/Group';
 import { TypeormGroup } from '../entities/TypeormGroup';
-import { AccountId } from '../../core/domain/Account';
+import { BusinessId } from '../../../businesses/core/domain/Business';
 import { GroupNotFound } from '../../core/domain/errors/SignerGroupNotFound';
 
 export class TypeormGroupRepository implements GroupRepository {
@@ -23,9 +23,9 @@ export class TypeormGroupRepository implements GroupRepository {
         return group ? group.toDomain() : undefined;
     }
 
-    async getByAccountId(accountId: AccountId): Promise<Group[]> {
+    async getByBusinessId(businessId: BusinessId): Promise<Group[]> {
         const groups = await this.repository.find({
-            where: { accountId },
+            where: { businessId },
             order: { name: 'ASC' },
         });
         return groups.map((sg) => sg.toDomain());

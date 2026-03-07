@@ -1,6 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
 import { Business, BusinessId } from '../core/domain/Business';
 import { TypeormAccount } from '../../accounts/infrastructure/entities/TypeormAccount';
+import { TypeormGroup } from '../../accounts/infrastructure/entities/TypeormGroup';
 
 @Entity('businesses')
 export class TypeormBusiness {
@@ -24,6 +25,9 @@ export class TypeormBusiness {
 
     @OneToMany(() => TypeormAccount, (account) => account.business)
     accounts?: TypeormAccount[];
+
+    @OneToMany(() => TypeormGroup, (group) => group.business)
+    groups?: TypeormGroup[];
 
     toDomain(): Business {
         return new Business({
