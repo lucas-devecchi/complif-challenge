@@ -27,7 +27,6 @@ export const createBusinessController: Controller = async (req, res) => {
         industry,
     } = req.body;
 
-
     const business = await createBusiness.invoke({
         name,
         taxId,
