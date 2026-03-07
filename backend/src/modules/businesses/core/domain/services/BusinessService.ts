@@ -1,7 +1,6 @@
 import { businessRepository, BusinessRepository } from "../repositories/BusinessRepository";
 import { Business, BusinessId, BusinessStatus } from "../entities/Business";
-import { RiskCalculator } from "./RiskCalculator";
-import { RISK_THRESHOLD_MANUAL_REVIEW } from "./RiskCalculator";
+import { RiskCalculator, RISK_THRESHOLD_MANUAL_REVIEW } from "./RiskCalculator";
 
 export type CreateBusinessInput = {
     name: string;
@@ -18,24 +17,28 @@ export class BusinessService {
     ) { }
 
     async create(businessProps: CreateBusinessInput): Promise<Business> {
-
         const riskScore = this.riskCalculator.calculate({
             country: businessProps.country,
             industry: businessProps.industry,
-            documentsComplete: true,
+            documentsComplete: businessProps.documentsComplete ?? true,
         });
-
-        const status = riskScore > RISK_THRESHOLD_MANUAL_REVIEW
-            ? BusinessStatus.IN_REVIEW
-            : BusinessStatus.APPROVED;
 
         const business = Business.new({
             ...businessProps,
             riskScore,
-            status,
+            status: BusinessStatus.PENDING,
         });
 
         return this.businessRepository.save(business);
+    }
+
+    async updateStatusBasedOnRiskScore(business: Business): Promise<Business> {
+        const status = business.riskScore > RISK_THRESHOLD_MANUAL_REVIEW
+            ? BusinessStatus.IN_REVIEW
+            : BusinessStatus.APPROVED;
+
+        const updatedBusiness = business.copy({ status });
+        return this.businessRepository.save(updatedBusiness);
     }
 
     async update(business: Business): Promise<Business> {
