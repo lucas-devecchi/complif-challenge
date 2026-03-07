@@ -4,6 +4,7 @@ import { SignatureSchema, SignatureSchemaId } from "../core/domain/entities/Sign
 import { TypeormSignatureSchema } from "./TypeormSignatureSchema";
 import { SignatureSchemaNotFound } from "../core/domain/errors/SignatureSchemaNotFound";
 import { EntriesResult } from "../../shared/domain/EntriesResult";
+import { AccountId } from "../../accounts/core/domain/Account";
 
 export class TypeormSignatureSchemaRepository implements SignatureSchemaRepository {
     private repository: Repository<TypeormSignatureSchema>;
@@ -61,6 +62,16 @@ export class TypeormSignatureSchemaRepository implements SignatureSchemaReposito
         await this.repository.delete(id);
 
         return signatureSchema.toDomain();
+    }
+
+    async getNextVersionForAccount(accountId: AccountId): Promise<number> {
+        const signatureSchemas = await this.repository.find({
+            where: { accountId },
+            order: { version: 'DESC' },
+            take: 1,
+        });
+
+        return signatureSchemas.length > 0 ? signatureSchemas[0].version + 1 : 1;
     }
 }
 

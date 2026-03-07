@@ -1,11 +1,13 @@
 import { signatureSchemaRepository, SignatureSchemaRepository } from "../repositories/SignatureSchemaRepository";
 import { NewProps, SignatureSchema, SignatureSchemaId } from "../entities/SignatureSchema";
+import { CreateSignatureSchemaDto } from "../../../../../delivery/dtos/signatureSchemaDTO";
 
 export class SignatureSchemaService {
     constructor(private signatureSchemaRepository: SignatureSchemaRepository) { }
 
-    async create(props: NewProps) {
-        return this.signatureSchemaRepository.save(SignatureSchema.new(props));
+    async create(props: CreateSignatureSchemaDto) {
+        const version = await this.signatureSchemaRepository.getNextVersionForAccount(props.account.id);
+        return this.signatureSchemaRepository.save(SignatureSchema.new({ ...props, version }));
     }
 
     async update(signatureSchema: SignatureSchema) {
