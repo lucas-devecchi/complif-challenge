@@ -2,8 +2,14 @@ import { businessRepository, BusinessRepository } from "../repositories/Business
 import { Business, BusinessId, BusinessStatus } from "../entities/Business";
 import { RiskCalculator } from "./RiskCalculator";
 import { RISK_THRESHOLD_MANUAL_REVIEW } from "./RiskCalculator";
-import { CreateBusinessDto } from "../../../../../delivery/dtos/businessDTO";
 
+export type CreateBusinessInput = {
+    name: string;
+    taxId: string;
+    country: string;
+    industry: string;
+    documentsComplete?: boolean;
+};
 
 export class BusinessService {
     constructor(
@@ -11,7 +17,7 @@ export class BusinessService {
         private riskCalculator: RiskCalculator,
     ) { }
 
-    async create(businessProps: CreateBusinessDto): Promise<Business> {
+    async create(businessProps: CreateBusinessInput): Promise<Business> {
 
         const riskScore = this.riskCalculator.calculate({
             country: businessProps.country,

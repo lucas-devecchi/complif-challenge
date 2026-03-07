@@ -32,6 +32,7 @@ export const createBusinessController: Controller = async (req, res) => {
         taxId,
         country,
         industry,
+        userId: req.user!.id,
     });
     res.status(201).json(business);
 };
