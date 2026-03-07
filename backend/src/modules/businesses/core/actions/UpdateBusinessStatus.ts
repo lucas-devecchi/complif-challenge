@@ -15,7 +15,7 @@ class UpdateBusinessStatus {
 
     async invoke(id: BusinessId, status: BusinessStatus): Promise<Business> {
         const business = await this.repository.getById(id); // TODO: find out if it is ok to skip service layer and call repository directly.
-        
+
         if (!business)
             throw new BusinessNotFound(id);
 
@@ -25,8 +25,7 @@ class UpdateBusinessStatus {
 
         if (status === BusinessStatus.APPROVED) {
             const account = await this.accountService.create({ business: { id: business.id } });
-            const signatureSchema = await this.signatureSchemaService.create({ account: { id: account.id } });
-
+            await this.signatureSchemaService.create({ account: { id: account.id } });
         }
 
         return this.businessService.update(updatedBusiness);
