@@ -16,9 +16,10 @@ export type BusinessProps = {
     country: string;
     industry: string;
     status: BusinessStatus;
+    riskScore: number;
 };
 
-export type NewProps = Omit<BusinessProps, 'id' | 'status'>;
+export type NewProps = Omit<BusinessProps, 'id'>;
 
 export class Business {
     readonly id: BusinessId;
@@ -27,6 +28,7 @@ export class Business {
     readonly country: string;
     readonly industry: string;
     readonly status: BusinessStatus;
+    readonly riskScore: number;
 
     constructor(props: BusinessProps) {
         this.id = props.id;
@@ -35,13 +37,13 @@ export class Business {
         this.country = props.country;
         this.industry = props.industry;
         this.status = props.status;
+        this.riskScore = props.riskScore;
     }
 
     static new(props: NewProps): Business {
         return new Business({
             ...props,
             id: randomUUID(),
-            status: BusinessStatus.PENDING,
         });
     }
 }
