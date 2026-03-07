@@ -1,10 +1,10 @@
 import { DataSource, FindOneOptions, FindOptionsWhere, Repository } from "typeorm";
-import { SignatureSchemaRepository, GetAllParams } from "../core/domain/repositories/SignatureSchemaRepository";
-import { SignatureSchema, SignatureSchemaId } from "../core/domain/entities/SignatureSchema";
-import { TypeormSignatureSchema } from "./TypeormSignatureSchema";
-import { SignatureSchemaNotFound } from "../core/domain/errors/SignatureSchemaNotFound";
-import { EntriesResult } from "../../shared/domain/EntriesResult";
-import { AccountId } from "../../accounts/core/domain/Account";
+import { SignatureSchemaRepository, GetAllParams } from "../../core/domain/repositories/SignatureSchemaRepository";
+import { SignatureSchema, SignatureSchemaId } from "../../core/domain/entities/SignatureSchema";
+import { TypeormSignatureSchema } from "../entities/TypeormSignatureSchema";
+import { SignatureSchemaNotFound } from "../../core/domain/errors/SignatureSchemaNotFound";
+import { EntriesResult } from "../../../shared/domain/EntriesResult";
+import { AccountId } from "../../../accounts/core/domain/Account";
 
 export class TypeormSignatureSchemaRepository implements SignatureSchemaRepository {
     private repository: Repository<TypeormSignatureSchema>;

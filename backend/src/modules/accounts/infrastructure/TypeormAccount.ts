@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, OneToOne } from 'typeorm';
 import { TypeormBusiness } from '../../businesses/infrastructure/entities/TypeormBusiness';
-import { TypeormSignatureSchema } from '../../signatureSchemas/infrastructure/TypeormSignatureSchema';
+import { TypeormSignatureSchema } from '../../signatureSchemas/infrastructure/entities/TypeormSignatureSchema';
 import { BusinessId } from '../../businesses/core/domain/entities/Business';
 import { Account, AccountId } from '../core/domain/Account';
 

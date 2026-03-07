@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne } from 'typeorm';
-import { SignatureSchema, SignatureSchemaId } from '../core/domain/entities/SignatureSchema';
-import { TypeormAccount } from '../../accounts/infrastructure/TypeormAccount';
-import { AccountId } from '../../accounts/core/domain/Account';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToOne, OneToMany } from 'typeorm';
+import { SignatureSchema, SignatureSchemaId } from '../../core/domain/entities/SignatureSchema';
+import { TypeormAccount } from '../../../accounts/infrastructure/TypeormAccount';
+import { AccountId } from '../../../accounts/core/domain/Account';
+import { TypeormSignatureRule } from './TypeormSignatureRule';
 
 @Entity('signatureSchemas')
 export class TypeormSignatureSchema {
@@ -16,6 +17,9 @@ export class TypeormSignatureSchema {
 
     @OneToOne(() => TypeormAccount, (account) => account.signatureSchema)
     account: TypeormAccount;
+
+    @OneToMany(() => TypeormSignatureRule, (rule) => rule.schema)
+    signatureRules: TypeormSignatureRule[];
 
     @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
     createdAt: Date;

@@ -2,7 +2,7 @@ import { TypeormConnectionManager } from '../../../../../config/TypeormConnectio
 import { AccountId } from '../../../../accounts/core/domain/Account';
 import { EntriesResult } from '../../../../shared/domain/EntriesResult';
 import { Pagination } from '../../../../shared/domain/Pagination';
-import { TypeormSignatureSchemaRepository } from '../../../infrastructure/TypeormSignatureSchemaRepository';
+import { TypeormSignatureSchemaRepository } from '../../../infrastructure/repositories/TypeormSignatureSchemaRepository';
 import { SignatureSchema, SignatureSchemaId } from '../entities/SignatureSchema';
 
 export type GetAllParams = {

@@ -3,9 +3,12 @@ import 'reflect-metadata';
 import { TypeormBusiness } from '../modules/businesses/infrastructure/entities/TypeormBusiness';
 import { TypeormAccount } from '../modules/accounts/infrastructure/TypeormAccount';
 import { TypeormGroup } from '../modules/businesses/infrastructure/entities/TypeormGroup';
-import { TypeormSignatureSchema } from '../modules/signatureSchemas/infrastructure/TypeormSignatureSchema';
+import { TypeormSignatureSchema } from '../modules/signatureSchemas/infrastructure/entities/TypeormSignatureSchema';
 import { TypeormUser } from '../modules/users/infrastructure/TypeormUser';
 import { TypeormStatusHistory } from '../modules/businesses/infrastructure/entities/TypeormStatusHistory';
+import { TypeormSignatureRule } from '../modules/signatureSchemas/infrastructure/entities/TypeormSignatureRule';
+import { TypeormRuleOption } from '../modules/signatureSchemas/infrastructure/entities/TypeormRuleOption';
+import { TypeormRuleRequirement } from '../modules/signatureSchemas/infrastructure/entities/TypeormRuleRequirement';
 
 export class TypeormConnectionManager {
     private static dataSource: DataSource;
@@ -48,12 +51,13 @@ export class TypeormConnectionManager {
             entities: [
                 TypeormUser,
                 TypeormBusiness,
-                TypeormAccount,
-                TypeormGroup,
-                TypeormSignatureSchema,
                 TypeormStatusHistory,
-                // TypeormSignatureRule,
-                // TypeormRuleOption,
+                TypeormGroup,
+                TypeormAccount,
+                TypeormSignatureSchema,
+                TypeormSignatureRule,
+                TypeormRuleOption,
+                TypeormRuleRequirement,
             ],
             synchronize: true,
             ssl: DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
