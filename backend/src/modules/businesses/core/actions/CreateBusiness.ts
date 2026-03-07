@@ -18,6 +18,7 @@ class CreateBusiness {
 
     const business = await this.businessService.create(businessDTO);
 
+    // Create status history for initial status
     await this.statusHistoryService.create({
       business: { id: business.id },
       previousStatus: undefined,
@@ -27,26 +28,21 @@ class CreateBusiness {
 
     const evaluatedBusiness = await this.businessService.updateStatusBasedOnRiskScore(business);
 
-    if (evaluatedBusiness.status !== BusinessStatus.PENDING) {
-      await this.statusHistoryService.create({
-        business: { id: business.id },
-        previousStatus: BusinessStatus.PENDING,
-        newStatus: evaluatedBusiness.status,
-        user: { id: userId },
-      });
-    }
+    // Create status history for status based on risk score
+    await this.statusHistoryService.create({
+      business: { id: business.id },
+      previousStatus: business.status,
+      newStatus: evaluatedBusiness.status,
+      user: { id: userId },
+    });
 
     if (evaluatedBusiness.status === BusinessStatus.APPROVED) {
       const account = await this.accountService.create({ business: { id: business.id } });
       await this.signatureSchemaService.create({ account: { id: account.id } });
-  }
+    }
 
     return evaluatedBusiness;
   }
 }
 
 export const createBusiness = new CreateBusiness(businessService, statusHistoryService, accountService, signatureSchemaService);
-
-
-
-
