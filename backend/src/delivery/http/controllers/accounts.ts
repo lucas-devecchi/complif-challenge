@@ -20,10 +20,9 @@ export const getAccountByIdController: Controller = async (req, res) => {
 };
 
 export const createAccountController: Controller = async (req, res) => {
-    const { accountNumber, businessId } = req.body;
+    const { businessId } = req.body;
 
     const account = await createAccount.invoke({
-        accountNumber,
         business: { id: businessId },
     });
     res.status(201).json(account);

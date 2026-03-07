@@ -1,0 +1,29 @@
+import { Business, BusinessId, BusinessProps, BusinessStatus } from "../domain/entities/Business";
+import { businessRepository, BusinessRepository } from "../domain/repositories/BusinessRepository";
+import { businessService, BusinessService } from "../domain/services/BusinessService";
+import { BusinessNotFound } from "../domain/errors/BusinessNotFound";
+import { accountService, AccountService } from "../../../accounts/core/domain/AccountService";
+
+class UpdateBusinessStatus {
+    constructor(
+        private businessService: BusinessService,
+        private repository: BusinessRepository,
+        private accountService: AccountService) { }
+
+    async invoke(id: BusinessId, status: BusinessStatus): Promise<Business> {
+        const business = await this.repository.getById(id);
+        if (!business)
+            throw new BusinessNotFound(id);
+
+        if (business.status === status) return business;
+
+        const updatedBusiness = business.copy({ status });
+
+        if (status === BusinessStatus.APPROVED) {
+            await this.accountService.create({ business: { id: business.id } });
+        }
+        return this.businessService.update(updatedBusiness);
+    }
+}
+
+export const updateBusinessStatus = new UpdateBusinessStatus(businessService, businessRepository, accountService);

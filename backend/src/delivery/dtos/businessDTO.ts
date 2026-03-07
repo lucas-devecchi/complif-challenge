@@ -8,4 +8,4 @@ export type CreateBusinessDto = {
     documentsComplete?: boolean; // TODO: provision for incomplete documents.
     status?: BusinessStatus; // TODO: check if undefined is needed in the future.
     riskScore?: number; // TODO: check if undefined is needed in the future.
-} 
+}; 

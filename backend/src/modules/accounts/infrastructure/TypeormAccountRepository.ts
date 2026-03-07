@@ -61,4 +61,18 @@ export class TypeormAccountRepository implements AccountRepository {
 
         return account.toDomain();
     }
+
+    async getNextAccountNumberForBusiness(businessId: string): Promise<number> {
+        const accounts = await this.repository.find({
+            where: { businessId },
+            select: ['accountNumber'],
+        });
+
+        const numbers = accounts
+            .map((a) => parseInt(a.accountNumber, 10))
+            .filter((n) => !isNaN(n));
+
+        const max = numbers.length > 0 ? Math.max(...numbers) : 0;
+        return max + 1;
+    }
 }

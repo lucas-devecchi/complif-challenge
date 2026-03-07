@@ -46,4 +46,11 @@ export class Business {
             id: randomUUID(),
         });
     }
+
+    copy(props: Partial<BusinessProps>): Business {
+        return new Business({
+            ...this,
+            ...props,
+        });
+    }
 }

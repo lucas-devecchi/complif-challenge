@@ -8,8 +8,8 @@ export const setupRoutes = (app: Application): void => {
     app.get('/businesses', defaultController(getAllBusinessesController));
     app.get('/businesses/:id', defaultController(getBusinessByIdController));
     app.post('/businesses', defaultController(createBusinessController));
-    app.put('/businesses/:id', defaultController(updateBusinessController));
-    app.delete('/businesses/:id', defaultController(deleteBusinessController));
+    app.patch('/businesses/:id', defaultController(updateBusinessController));
+    // app.delete('/businesses/:id', defaultController(deleteBusinessController));
 
     app.get('/accounts', defaultController(getAllAccountsController));
     app.get('/accounts/:id', defaultController(getAccountByIdController));

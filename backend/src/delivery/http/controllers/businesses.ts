@@ -2,7 +2,7 @@ import { createBusiness } from "../../../modules/businesses/core/actions/CreateB
 import { deleteBusiness } from "../../../modules/businesses/core/actions/DeleteBusiness";
 import { getAllBusinesss } from "../../../modules/businesses/core/actions/GetAllBusinesses";
 import { getBusinessById } from "../../../modules/businesses/core/actions/GetBusinessById";
-import { updateBusiness } from "../../../modules/businesses/core/actions/UpdateBusiness";
+import { updateBusinessStatus } from "../../../modules/businesses/core/actions/UpdateBusinessStatus";
 import { getBusinessId, getPagination } from "../../utils/Functions";
 import Controller from "./controller";
 
@@ -39,7 +39,7 @@ export const createBusinessController: Controller = async (req, res) => {
 export const updateBusinessController: Controller = async (req, res) => {
     const { status } = req.body;
 
-    const business = await updateBusiness.invoke(getBusinessId(req), { status });
+    const business = await updateBusinessStatus.invoke(getBusinessId(req), status);
 
     res.status(200).json(business);
 };
