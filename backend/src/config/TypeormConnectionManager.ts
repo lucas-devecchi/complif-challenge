@@ -5,6 +5,7 @@ import { TypeormAccount } from '../modules/accounts/infrastructure/TypeormAccoun
 import { TypeormGroup } from '../modules/businesses/infrastructure/entities/TypeormGroup';
 import { TypeormSignatureSchema } from '../modules/signatureSchemas/infrastructure/TypeormSignatureSchema';
 import { TypeormUser } from '../modules/users/infrastructure/TypeormUser';
+import { TypeormStatusHistory } from '../modules/businesses/infrastructure/entities/TypeormStatusHistory';
 
 export class TypeormConnectionManager {
     private static dataSource: DataSource;
@@ -50,6 +51,7 @@ export class TypeormConnectionManager {
                 TypeormAccount,
                 TypeormGroup,
                 TypeormSignatureSchema,
+                TypeormStatusHistory,
                 // TypeormSignatureRule,
                 // TypeormRuleOption,
             ],

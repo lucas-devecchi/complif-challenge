@@ -2,6 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } f
 import { Business, BusinessId, BusinessStatus } from '../../core/domain/entities/Business';
 import { TypeormAccount } from '../../../accounts/infrastructure/TypeormAccount';
 import { TypeormGroup } from './TypeormGroup';
+import { TypeormStatusHistory } from './TypeormStatusHistory';
 
 @Entity('businesses')
 export class TypeormBusiness {
@@ -34,6 +35,9 @@ export class TypeormBusiness {
 
     @OneToMany(() => TypeormGroup, (group) => group.business)
     groups?: TypeormGroup[];
+
+    @OneToMany(() => TypeormStatusHistory, (history) => history.business)
+    statusHistories?: TypeormStatusHistory[];
 
     toDomain(): Business {
         return new Business({
