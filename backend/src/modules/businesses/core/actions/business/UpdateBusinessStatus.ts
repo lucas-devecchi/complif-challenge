@@ -1,10 +1,10 @@
-import { Business, BusinessId, BusinessStatus } from "../domain/entities/Business";
-import { businessRepository, BusinessRepository } from "../domain/repositories/BusinessRepository";
-import { businessService, BusinessService } from "../domain/services/BusinessService";
-import { statusHistoryService, StatusHistoryService } from "../domain/services/StatusHistoryService";
-import { BusinessNotFound } from "../domain/errors/BusinessNotFound";
-import { accountService, AccountService } from "../../../accounts/core/domain/AccountService";
-import { signatureSchemaService, SignatureSchemaService } from "../../../signatureSchemas/core/domain/services/SignatureSchemaService";
+import { Business, BusinessId, BusinessStatus } from "../../domain/entities/Business";
+import { businessRepository, BusinessRepository } from "../../domain/repositories/BusinessRepository";
+import { businessService, BusinessService } from "../../domain/services/BusinessService";
+import { statusHistoryService, StatusHistoryService } from "../../domain/services/StatusHistoryService";
+import { BusinessNotFound } from "../../domain/errors/BusinessNotFound";
+import { accountService, AccountService } from "../../../../accounts/core/domain/AccountService";
+import { signatureSchemaService, SignatureSchemaService } from "../../../../signatureSchemas/core/domain/services/SignatureSchemaService";
 
 export type UpdateBusinessStatusParams = {
     businessId: BusinessId;

@@ -1,5 +1,5 @@
-import { Business, BusinessId } from "../domain/entities/Business";
-import { businessService, BusinessService } from "../domain/services/BusinessService";
+import { Business, BusinessId } from "../../domain/entities/Business";
+import { businessService, BusinessService } from "../../domain/services/BusinessService";
 
 class DeleteBusiness {
     constructor(private businessService: BusinessService) { }

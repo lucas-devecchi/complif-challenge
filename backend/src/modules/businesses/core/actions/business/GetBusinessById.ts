@@ -1,6 +1,6 @@
-import { Business, BusinessId } from '../domain/entities/Business';
-import { businessRepository, BusinessRepository } from '../domain/repositories/BusinessRepository';
-import { BusinessNotFound } from '../domain/errors/BusinessNotFound';
+import { Business, BusinessId } from '../../domain/entities/Business';
+import { businessRepository, BusinessRepository } from '../../domain/repositories/BusinessRepository';
+import { BusinessNotFound } from '../../domain/errors/BusinessNotFound';
 
 class GetBusinessById {
   constructor(private businessRepository: BusinessRepository) { }

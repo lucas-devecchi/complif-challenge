@@ -29,7 +29,7 @@ export const createAccountController: Controller = async (req, res) => {
 };
 
 export const updateAccountController: Controller = async (req, res) => {
-    const { accountNumber, businessId, signatureSchemaId } = req.body;
+    const { accountNumber, businessId } = req.body;
 
     const account = await updateAccount.invoke(getAccountId(req), {
         accountNumber,

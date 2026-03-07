@@ -1,8 +1,8 @@
-import { createBusiness } from "../../../modules/businesses/core/actions/CreateBusiness";
-import { deleteBusiness } from "../../../modules/businesses/core/actions/DeleteBusiness";
-import { getAllBusinesss } from "../../../modules/businesses/core/actions/GetAllBusinesses";
-import { getBusinessById } from "../../../modules/businesses/core/actions/GetBusinessById";
-import { updateBusinessStatus } from "../../../modules/businesses/core/actions/UpdateBusinessStatus";
+import { createBusiness } from "../../../modules/businesses/core/actions/business/CreateBusiness";
+import { deleteBusiness } from "../../../modules/businesses/core/actions/business/DeleteBusiness";
+import { getAllBusinesss } from "../../../modules/businesses/core/actions/business/GetAllBusinesses";
+import { getBusinessById } from "../../../modules/businesses/core/actions/business/GetBusinessById";
+import { updateBusinessStatus } from "../../../modules/businesses/core/actions/business/UpdateBusinessStatus";
 import { getBusinessId, getPagination } from "../../utils/Functions";
 import Controller from "./controller";
 
