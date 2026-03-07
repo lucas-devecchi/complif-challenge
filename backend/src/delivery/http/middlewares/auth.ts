@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import Middleware from "./middleware";
 import { JwtPayload } from "../../../modules/users/core/domain/services/JwtService";
 import { ErrorType, HandledError } from "../../../modules/shared/domain/errors/HandledError";
 
@@ -13,7 +13,7 @@ declare global {
     }
 }
 
-export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
+export const authMiddleware: Middleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
