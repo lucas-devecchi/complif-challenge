@@ -1,5 +1,5 @@
 import { Account, AccountId } from '../domain/Account';
-import {accountRepository, AccountRepository } from '../domain/AccountRepository';
+import { accountRepository, AccountRepository } from '../domain/AccountRepository';
 import { AccountNotFound } from '../domain/errors/AccountNotFound';
 
 class GetAccountById {

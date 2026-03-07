@@ -1,6 +1,4 @@
 import { randomUUID } from 'crypto';
-import { OptionalExceptFor } from '../../../shared/domain/utils';
-import { AccountProps } from '../../../accounts/core/domain/Account';
 
 export type BusinessId = string;
 
@@ -10,7 +8,6 @@ export type BusinessProps = {
     taxId: string;
     country: string;
     industry: string;
-    account?: OptionalExceptFor<AccountProps, 'id'>;
 };
 
 export type NewProps = Omit<BusinessProps, 'id'>;

@@ -1,5 +1,5 @@
-import { businessService, BusinessService } from '../domain/BusinessService';
-import { NewProps, Business } from '../domain/Business';
+import { businessService, BusinessService } from '../domain/services/BusinessService';
+import { NewProps, Business } from '../domain/entities/Business';
 
 class CreateBusiness {
   constructor(private businessService: BusinessService) { }

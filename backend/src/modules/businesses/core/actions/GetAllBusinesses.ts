@@ -1,6 +1,6 @@
 import { EntriesResult } from "../../../shared/domain/EntriesResult";
-import { Business } from "../domain/Business";
-import { businessRepository, BusinessRepository, GetAllParams } from "../domain/BusinessRepository";
+import { Business } from "../domain/entities/Business";
+import { businessRepository, BusinessRepository, GetAllParams } from "../domain/repositories/BusinessRepository";
 
 class GetAllBusinesss {
   constructor(private businessRepository: BusinessRepository) {}

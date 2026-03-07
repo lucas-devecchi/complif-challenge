@@ -3,10 +3,7 @@ import { ResourceNotFound } from "../../../../shared/domain/errors/ResourceNotFo
 import { AccountId } from "../Account";
 
 export class AccountNotFound extends ResourceNotFound {
-    constructor(id: AccountId,) {
+    constructor(id: AccountId) {
         super(Resource.ACCOUNT, { id });
     }
 }
-
-
-

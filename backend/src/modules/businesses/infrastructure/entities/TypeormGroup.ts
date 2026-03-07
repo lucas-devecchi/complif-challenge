@@ -1,9 +1,9 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
-import { Group, GroupId } from '../../core/domain/Group';
-import { TypeormBusiness } from '../../../businesses/infrastructure/TypeormBusiness';
-import { BusinessId } from '../../../businesses/core/domain/Business';
+import { Group, GroupId } from '../../core/domain/entities/Group';
+import { TypeormBusiness } from './TypeormBusiness';
+import { BusinessId } from '../../core/domain/entities/Business';
 
-@Entity('groups')
+@Entity('signer_groups')
 export class TypeormGroup {
     @PrimaryGeneratedColumn('uuid')
     id: GroupId;
@@ -15,6 +15,7 @@ export class TypeormGroup {
     businessId: BusinessId;
 
     @ManyToOne(() => TypeormBusiness, (business) => business.groups)
+    @JoinColumn({ name: 'business_id' })
     business: TypeormBusiness;
 
     toDomain(): Group {

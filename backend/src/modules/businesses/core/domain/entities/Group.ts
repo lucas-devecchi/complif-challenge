@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
-import { OptionalExceptFor } from '../../../shared/domain/utils';
-import { BusinessProps } from '../../../businesses/core/domain/Business';
+import { BusinessProps } from './Business';
+import { OptionalExceptFor } from '../../../../shared/domain/utils';
 
 export type GroupId = string;
 

@@ -1,8 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, OneToOne } from 'typeorm';
 import { Account, AccountId } from '../../core/domain/Account';
-import { TypeormBusiness } from '../../../businesses/infrastructure/TypeormBusiness';
+import { TypeormBusiness } from '../../../businesses/infrastructure/entities/TypeormBusiness';
 import { TypeormSignatureSchema } from '../../../signatureSchemas/infrastructure/TypeormSignatureSchema';
-import { BusinessId } from '../../../businesses/core/domain/Business';
+import { BusinessId } from '../../../businesses/core/domain/entities/Business';
 
 @Entity('accounts')
 export class TypeormAccount {

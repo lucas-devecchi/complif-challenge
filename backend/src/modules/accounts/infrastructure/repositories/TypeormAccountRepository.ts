@@ -48,7 +48,6 @@ export class TypeormAccountRepository implements AccountRepository {
         };
     }
 
-
     async delete(id: AccountId): Promise<Account> {
         const account = await this.repository.findOne({
             where: { id },

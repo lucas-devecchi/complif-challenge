@@ -1,9 +1,9 @@
 import { DataSource, FindOneOptions, FindOptionsWhere, Repository } from "typeorm";
-import { BusinessRepository, GetAllParams } from "../core/domain/BusinessRepository";
-import { Business, BusinessId } from "../core/domain/Business";
-import { TypeormBusiness } from "./TypeormBusiness";
-import { BusinessNotFound } from "../core/domain/errors/BusinessNotFound";
-import { EntriesResult } from "../../shared/domain/EntriesResult";
+import { BusinessRepository, GetAllParams } from "../../core/domain/repositories/BusinessRepository";
+import { Business, BusinessId } from "../../core/domain/entities/Business";
+import { TypeormBusiness } from "../entities/TypeormBusiness";
+import { BusinessNotFound } from "../../core/domain/errors/BusinessNotFound";
+import { EntriesResult } from "../../../shared/domain/EntriesResult";
 
 export class TypeormBusinessRepository implements BusinessRepository {
     private repository: Repository<TypeormBusiness>;

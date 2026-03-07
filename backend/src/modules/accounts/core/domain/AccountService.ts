@@ -1,5 +1,5 @@
 import { accountRepository, AccountRepository } from "./AccountRepository";
-import { NewProps, Account, AccountId } from "./Account";
+import { NewProps, Account, AccountId } from "../entities/Account";
 
 export class AccountService {
     constructor(private accountRepository: AccountRepository) { }

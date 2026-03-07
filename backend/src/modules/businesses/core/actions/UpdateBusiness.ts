@@ -1,6 +1,6 @@
-import { Business, BusinessId, BusinessProps } from "../domain/Business";
-import { businessRepository, BusinessRepository } from "../domain/BusinessRepository";
-import { businessService, BusinessService } from "../domain/BusinessService";
+import { Business, BusinessId, BusinessProps } from "../domain/entities/Business";
+import { businessRepository, BusinessRepository } from "../domain/repositories/BusinessRepository";
+import { businessService, BusinessService } from "../domain/services/BusinessService";
 import { BusinessNotFound } from "../domain/errors/BusinessNotFound";
 
 class UpdateBusiness {

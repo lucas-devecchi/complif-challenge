@@ -1,5 +1,5 @@
-import { businessRepository, BusinessRepository } from "./BusinessRepository";
-import { NewProps, Business, BusinessId } from "./Business";
+import { businessRepository, BusinessRepository } from "../repositories/BusinessRepository";
+import { NewProps, Business, BusinessId } from "../entities/Business";
 
 export class BusinessService {
     constructor(private businessRepository: BusinessRepository) { }

@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import { OptionalExceptFor } from '../../../shared/domain/utils';
-import { BusinessProps } from '../../../businesses/core/domain/Business';
+import { BusinessProps } from '../../../businesses/core/domain/entities/Business';
 
 export type AccountId = string;
 

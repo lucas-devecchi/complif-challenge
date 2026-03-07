@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, OneToMany } from 'typeorm';
-import { Business, BusinessId } from '../core/domain/Business';
-import { TypeormAccount } from '../../accounts/infrastructure/entities/TypeormAccount';
-import { TypeormGroup } from '../../accounts/infrastructure/entities/TypeormGroup';
+import { Business, BusinessId } from '../../core/domain/entities/Business';
+import { TypeormAccount } from '../../../accounts/infrastructure/entities/TypeormAccount';
+import { TypeormGroup } from './TypeormGroup';
 
 @Entity('businesses')
 export class TypeormBusiness {

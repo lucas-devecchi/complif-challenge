@@ -1,9 +1,9 @@
 import { DataSource, Repository } from 'typeorm';
-import { GroupRepository } from '../../core/domain/GroupRepository';
-import { Group, GroupId } from '../../core/domain/Group';
+import { GroupRepository } from '../../core/domain/repositories/GroupRepository';
+import { Group, GroupId } from '../../core/domain/entities/Group';
 import { TypeormGroup } from '../entities/TypeormGroup';
-import { BusinessId } from '../../../businesses/core/domain/Business';
-import { GroupNotFound } from '../../core/domain/errors/SignerGroupNotFound';
+import { BusinessId } from '../../core/domain/entities/Business';
+import { GroupNotFound } from '../../core/domain/errors/GroupNotFound';
 
 export class TypeormGroupRepository implements GroupRepository {
     private repository: Repository<TypeormGroup>;

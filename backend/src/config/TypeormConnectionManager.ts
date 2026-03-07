@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm';
 import 'reflect-metadata';
-import { TypeormBusiness } from '../modules/businesses/infrastructure/TypeormBusiness';
+import { TypeormBusiness } from '../modules/businesses/infrastructure/entities/TypeormBusiness';
 import { TypeormAccount } from '../modules/accounts/infrastructure/entities/TypeormAccount';
-import { TypeormGroup } from '../modules/accounts/infrastructure/entities/TypeormGroup';
+import { TypeormGroup } from '../modules/businesses/infrastructure/entities/TypeormGroup';
 import { TypeormSignatureSchema } from '../modules/signatureSchemas/infrastructure/TypeormSignatureSchema';
 
 export class TypeormConnectionManager {

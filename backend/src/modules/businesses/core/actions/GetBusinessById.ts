@@ -1,5 +1,5 @@
-import { Business, BusinessId } from '../domain/Business';
-import {businessRepository, BusinessRepository } from '../domain/BusinessRepository';
+import { Business, BusinessId } from '../domain/entities/Business';
+import { businessRepository, BusinessRepository } from '../domain/repositories/BusinessRepository';
 import { BusinessNotFound } from '../domain/errors/BusinessNotFound';
 
 class GetBusinessById {

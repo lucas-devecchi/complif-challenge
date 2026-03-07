@@ -1,7 +1,7 @@
-import { TypeormGroupRepository } from '../../infrastructure/repositories/TypeormGroupRepository';
-import { Group, GroupId } from './Group';
-import { TypeormConnectionManager } from '../../../../config/TypeormConnectionManager';
-import { BusinessId } from '../../../businesses/core/domain/Business';
+import { TypeormConnectionManager } from '../../../../../config/TypeormConnectionManager';
+import { Group, GroupId } from '../entities/Group';
+import { BusinessId } from '../entities/Business';
+import { TypeormGroupRepository } from '../../../infrastructure/repositories/TypeormGroupRepository';
 
 export interface GroupRepository {
     save(group: Group): Promise<Group>;
